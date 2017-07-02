@@ -32,6 +32,32 @@ app.use(webpackHotMiddleware(compiler, {
 
 app.use(express.static('public'));
 
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  return next(err);
+});
+
+// error handlers
+
+if (app.get('env') === 'development') {
+  app.use((err, req, res) => {
+    res.status(err.status || 500);
+    return res.render('error', {
+      message: err.message,
+      error: err,
+    });
+  });
+}
+
+app.use((err, req, res) => {
+  res.status(err.status || 500);
+  return res.render('error', {
+    message: err.message,
+    error: {},
+  });
+});
+
 const port = 13131;
 
 server.listen(port, () => {

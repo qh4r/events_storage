@@ -1,19 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
-import { Provider } from 'react-redux';
-import { store } from './store';
 import { AppRouter } from './AppRouter';
 
-const App = () => (
-  <Provider store={store}>
-    <ThemeProvider theme={{
-      mycolor: 'red',
-    }}
-    >
-      <AppRouter />
-    </ThemeProvider>
-  </Provider>
+const App = ({ history }) => (
+  <ThemeProvider theme={{
+    mycolor: 'red',
+  }}
+  >
+    <AppRouter history={history} />
+  </ThemeProvider>
 );
+
+App.propTypes = {
+// eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.object.isRequired,
+};
 
 export {
   App,

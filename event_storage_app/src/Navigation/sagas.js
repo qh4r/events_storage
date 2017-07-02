@@ -4,12 +4,10 @@ import { NAVIGATE_TO_FORM, NAVIGATE_TO_LIST } from './constants';
 
 
 function* goToList() {
-  console.log('list nav');
   yield put(push('/list'));
 }
 
 function* goToForm() {
-  console.log('form navigation');
   yield put(push('/'));
 }
 

@@ -1,10 +1,13 @@
-/* eslint-disable import/no-dynamic-require */
+/* eslint-disable import/no-dynamic-require,no-console */
 import http from 'http';
 import express from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import { handlePreRender } from './prerenderMiddleware';
+import { parseDefaultState } from './parseDefaultState';
 
 // This is last resort. it's impossible to make it work otherwise. Setting env in terminal is not working too.
 // please adjust to production if needed
@@ -22,6 +25,7 @@ app.use(cors());
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: webpackConfig.output.publicPath,
+  serverSideRender: true,
 }));
 
 app.use(webpackHotMiddleware(compiler, {
@@ -30,7 +34,9 @@ app.use(webpackHotMiddleware(compiler, {
   heartbeat: 10 * 1000,
 }));
 
-app.use(express.static('public'));
+app.use(express.static('public/resources'));
+
+app.use('*', handlePreRender(() => parseDefaultState()));
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
@@ -38,7 +44,7 @@ app.use((req, res, next) => {
   return next(err);
 });
 
-// error handlers
+// error handlers are not useful considering I went with *.
 
 if (app.get('env') === 'development') {
   app.use((err, req, res) => {

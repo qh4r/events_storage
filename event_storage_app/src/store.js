@@ -1,19 +1,22 @@
-/* eslint-disable no-underscore-dangle */
-import * as Immutable from 'immutable';
+/* eslint-disable no-underscore-dangle,no-console */
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { rootReducer } from './rootReducer';
 import navigationSagas from './Navigation/sagas';
+import { fetchInitialState } from './fetchInitialState';
 
+const initialState = fetchInitialState();
 
 const sagas = createSagaMiddleware();
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (typeof window !== 'undefined'
+  && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+  || compose;
 
 const store = createStore(
   rootReducer,
-  Immutable.Map(),
+  initialState,
   composeEnhancers(applyMiddleware(
     sagas,
     routerMiddleware(browserHistory),

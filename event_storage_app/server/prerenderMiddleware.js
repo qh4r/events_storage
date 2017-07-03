@@ -6,7 +6,7 @@ import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { createMemoryHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
-import { template } from 'lodash';
+import * as ejs from 'ejs';
 import { ServerStyleSheet } from 'styled-components';
 import { App } from '../src/App';
 import { rootReducer } from '../src/rootReducer';
@@ -47,7 +47,7 @@ export const handlePreRender = getState => (req, res) => {
   readModuleFile('../public/index.html', (err, index) => {
     let parsedTemplate;
     try {
-      parsedTemplate = template(index)({
+      parsedTemplate = ejs.render(index, {
         css,
         html,
         initialState: JSON.stringify(initialState).replace(/</g, '\\u003c'),

@@ -25,7 +25,7 @@ app.use(cors());
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: webpackConfig.output.publicPath,
-  serverSideRender: true,
+  serverSideRender: false,
 }));
 
 app.use(webpackHotMiddleware(compiler, {

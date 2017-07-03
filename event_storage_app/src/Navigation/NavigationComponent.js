@@ -3,17 +3,14 @@ import PropTypes from 'prop-types';
 import { HeaderWrapper } from './fragments';
 import { Link } from './fragments/Link';
 import { LIST_LOCATION, FORM_LOCATION } from './constants';
+import { HeaderControls } from './fragments/HeaderControls';
 
 const NavigationComponent = ({ children, goToList, goToForm, route }) => (<div>
   <HeaderWrapper>
-    <div className="App-header">
-      <h2>Welcome to React</h2>
-    </div>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-    <Link isActive={route === LIST_LOCATION} onClick={goToList}>LIST</Link>
-    <Link isActive={route === FORM_LOCATION} onClick={goToForm}>FORM</Link>
+    <HeaderControls>
+      <Link isActive={route === LIST_LOCATION} onClick={goToList}>LIST</Link>
+      <Link isActive={route === FORM_LOCATION} onClick={goToForm}>FORM</Link>
+    </HeaderControls>
   </HeaderWrapper>
   { children }
 </div>);

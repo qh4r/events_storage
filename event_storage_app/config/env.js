@@ -1,4 +1,4 @@
-/* eslint-disable indent */
+/* eslint-disable indent,no-param-reassign */
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
@@ -21,6 +21,7 @@ const dotenvFiles = [
 
 dotenvFiles.forEach((dotenvFile) => {
   if (fs.existsSync(dotenvFile)) {
+// eslint-disable-next-line global-require
     require('dotenv').config({
       path: dotenvFile,
     });

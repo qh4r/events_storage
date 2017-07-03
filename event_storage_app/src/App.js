@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { AppRouter } from './AppRouter';
+import { theme } from './shared/theme';
+import { AppTheme } from './shared/AppTheme';
 
 const App = ({ history }) => (
-  <ThemeProvider theme={{
-    mycolor: 'red',
-  }}
-  >
-    <AppRouter history={history} />
+  <ThemeProvider theme={theme}>
+    <AppTheme>
+      <AppRouter history={history} />
+    </AppTheme>
   </ThemeProvider>
 );
 

@@ -10,4 +10,7 @@ export const theme = {
   hoveredButtonColor: '#0082b2',
   headerFontColor: '#FFF',
   maxContainerWidth: '1000px',
+  input: {
+    normalBorder: '#dbdbdb',
+  },
 };

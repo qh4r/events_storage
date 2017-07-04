@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../shared/mediaMixins';
 
 // language=SCSS prefix=dummy{ suffix=}
 export const Input = styled.input`
@@ -7,7 +8,17 @@ export const Input = styled.input`
   margin: 5px 0;
   padding: 0 15px;
   outline: none;
+  border: 1px solid ${({ theme }) => theme.input.normalBorder}
   font-family: ${({ theme }) => theme.font};
   font-weight: 200;
+  &::placeholder {
+    visibility: hidden;
+  }
+  ${media.sm`
+    &::placeholder {
+      visibility: visible;
+    }
+`}
+  
 `;
 

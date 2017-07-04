@@ -9,5 +9,5 @@ export const HeaderControls = styled.div`
     ${mainContainerSizeMixin}
     ${media.sm`
     justify-content: flex-start;
-    `}
+`}
 `;

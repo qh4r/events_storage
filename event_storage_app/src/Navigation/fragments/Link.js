@@ -13,6 +13,7 @@ const Link = styled.a `
   font-size: 24px;
   font-weight: 300;
   padding: 10px;
+  cursor: pointer;
   border-radius: 8px;
   transition: background-color 0.3s ease-in-out;
   &:hover {

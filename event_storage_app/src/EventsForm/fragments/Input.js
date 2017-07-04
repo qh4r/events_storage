@@ -8,17 +8,14 @@ export const Input = styled.input`
   margin: 5px 0;
   padding: 0 15px;
   outline: none;
-  border: 1px solid ${({ theme }) => theme.input.normalBorder}
+  border: 1px solid ${({ theme }) => theme.input.borderColor}
   font-family: ${({ theme }) => theme.font};
   font-weight: 200;
   &::placeholder {
-    visibility: hidden;
-  }
-  ${media.sm`
-    &::placeholder {
-      visibility: visible;
-    }
-`}
-  
+    visibility: visible;
+      ${media.sm`
+        visibility: hidden;
+      `}
+  }  
 `;
 

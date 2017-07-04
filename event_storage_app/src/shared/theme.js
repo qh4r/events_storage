@@ -11,6 +11,8 @@ export const theme = {
   headerFontColor: '#FFF',
   maxContainerWidth: '1000px',
   input: {
-    normalBorder: '#dbdbdb',
+    borderColor: '#dbdbdb',
+    mainColor: '#72cadd',
+    errorColor: '#ff585a',
   },
 };

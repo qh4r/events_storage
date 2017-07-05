@@ -12,7 +12,8 @@ const Button = styled.button`
       color: ${(props => props.theme.button.defaultFontColor)};  
       background-color: ${(props => props.theme.button.defaultBackgroundColor)};
       border: none;
-      
+      outline: none;
+
       &:hover {
         background-color: ${(props => props.theme.button.defaultActiveBackgroundColor)};
       }

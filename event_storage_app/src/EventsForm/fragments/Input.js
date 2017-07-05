@@ -5,6 +5,8 @@ import { media } from '../../shared/mediaMixins';
 // language=SCSS prefix=dummy{ suffix=}
 const Input = styled.input`
   font-size: 18px;
+  border-radius: 0px;
+  appearance: none;
   line-height: 48px;
   margin: 5px 0;
   padding: 0 15px;

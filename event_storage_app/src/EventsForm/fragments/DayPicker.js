@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { SingleDatePicker } from 'react-dates';
+import withUserAgent from 'react-useragent';
 import { media } from '../../shared/mediaMixins';
 
 const hidePlaceholder = hasData => (!hasData ? css`
@@ -42,8 +43,8 @@ const StyledPicker = styled.div`
         color: ${props => props.theme.input.fontColor};
       }
       
-      .DateInput {
-        width: 300px;
+      .DateInput {    
+          width: 280px;
         ${media.sm`
           width: 700px;
         `};
@@ -70,27 +71,35 @@ StyledPicker.propTypes = {
   error: PropTypes.string.isRequired,
 };
 
-const DayPicker = props => (
+const DayPickerControl = props => (
   <StyledPicker hasData={!!props.date} error={props.error}>
     <SingleDatePicker
       {...props}
       onDateChange={props.onChange}
       onFocusChange={props.onFocus}
+      withPortal={props.ua.mobile}
     />
   </StyledPicker>
 );
 
-DayPicker.propTypes = {
+
+DayPickerControl.propTypes = {
   error: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   date: PropTypes.object,
+  ua: PropTypes.shape({
+    mobile: PropTypes.bool,
+  }),
 };
 
-DayPicker.defaultProps = {
+DayPickerControl.defaultProps = {
   error: '',
   date: null,
+  ua: {},
 };
+
+const DayPicker = typeof window !== 'undefined' ? withUserAgent(DayPickerControl) : DayPickerControl;
 
 export {
   DayPicker,

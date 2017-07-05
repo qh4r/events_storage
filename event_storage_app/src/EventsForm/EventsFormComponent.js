@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
 import { validate as validateEmail } from 'email-validator';
+import 'airbnb-js-shims';
 import {
   FormContainer, Input, Button, DayPicker, SubmitButton,
   FormGroup, ValidatingForm, FormControlsWrapper,
@@ -71,7 +72,7 @@ export class EventsFormComponent extends Component {
             onChange={e => updateEmail(e.target.value)}
             placeholder="Email"
             type="text"
-            validator={data => (!validateEmail(data) ? 'Please, provide valid email' : '')}
+            validator={data => (!validateEmail(data) ? 'Please, provide valid email.' : '')}
             dataKey="value"
           />
           <FormGroup
@@ -84,7 +85,7 @@ export class EventsFormComponent extends Component {
             isOutsideRange={() => false}
             onChange={updateDate}
             focused={this.state.focused}
-            validator={data => (!data ? 'Date is required' : '')}
+            validator={data => (!data ? 'Date is required.' : '')}
             onFocus={({ focused }) => this.setState({ focused })}
           />
           <FormControlsWrapper>

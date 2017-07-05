@@ -2,12 +2,16 @@
 import http from 'http';
 import express from 'express';
 import cors from 'cors';
-import morgan from 'morgan';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 import { handlePreRender } from './prerenderMiddleware';
 import { parseDefaultState } from './parseDefaultState';
+import { eventsRouter } from './routes/eventsRouter';
+import { eventsController } from './controllers/eventsController';
+import { EventModel } from './models/eventModel';
 
 // This is last resort. it's impossible to make it work otherwise. Setting env in terminal is not working too.
 // please adjust to production if needed
@@ -19,9 +23,12 @@ const webpackConfig = require(`../config/webpack.config.${process.env.NODE_ENV =
 const app = express();
 const server = http.createServer(app);
 
+mongoose.connect('mongodb://127.0.0.1:27017/events_storage_db');
+
 const compiler = webpack(webpackConfig);
 
 app.use(cors());
+
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: webpackConfig.output.publicPath,
@@ -35,6 +42,12 @@ app.use(webpackHotMiddleware(compiler, {
 }));
 
 app.use(express.static('public/resources'));
+
+const eventsControllerInstance = eventsController(EventModel);
+
+app.use(bodyParser.json());
+
+app.use('/api', eventsRouter(eventsControllerInstance));
 
 app.use('*', handlePreRender(() => parseDefaultState()));
 

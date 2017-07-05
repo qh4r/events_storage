@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { rootReducer } from './rootReducer';
 import navigationSagas from './Navigation/sagas';
+import formSagas from './EventsForm/sagas';
 import { fetchInitialState } from './fetchInitialState';
 
 const initialState = fetchInitialState();
@@ -24,6 +25,7 @@ const store = createStore(
 function* startAllSagas() {
   yield [...[
     ...navigationSagas,
+    ...formSagas,
   ].map(saga => saga())];
 }
 

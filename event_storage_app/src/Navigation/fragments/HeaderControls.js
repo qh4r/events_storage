@@ -6,7 +6,7 @@ import { mainContainerSizeMixin } from '../../shared/mainContainerSizeMixin';
 export const HeaderControls = styled.div`
     display: flex;
     justify-content: space-around;
-    ${mainContainerSizeMixin}
+    ${mainContainerSizeMixin};
     ${media.sm`
     justify-content: flex-start;
 `}

@@ -3,19 +3,15 @@ import { media } from '../../shared/mediaMixins';
 
 // language=SCSS prefix=dummy{ suffix=}
 export const HeaderWrapper = styled.div `
+  z-index: 2;
   width: 100%;
   position: fixed;
   left: 0;
   bottom: 0;
   background-color: ${({ theme }) => theme.headerBackground};
   margin: auto;
-  margin-bottom: 10px;
   ${media.sm`
+    margin-bottom: 10px;
     position: static;
-    color: blue;
-  `}
-  
-  ${media.lg`
-    color: red;
   `}
 `;

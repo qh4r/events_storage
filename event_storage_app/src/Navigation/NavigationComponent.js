@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HeaderWrapper } from './fragments';
-import { Link } from './fragments/Link';
+import { HeaderWrapper, AppBody, HeaderControls, Link, PageBody } from './fragments';
 import { LIST_LOCATION, FORM_LOCATION } from './constants';
-import { HeaderControls } from './fragments/HeaderControls';
 
-const NavigationComponent = ({ children, goToList, goToForm, route }) => (<div>
-  <HeaderWrapper>
-    <HeaderControls>
-      <Link isActive={route === LIST_LOCATION} onClick={goToList}>LIST</Link>
-      <Link isActive={route === FORM_LOCATION} onClick={goToForm}>FORM</Link>
-    </HeaderControls>
-  </HeaderWrapper>
-  { children }
-</div>);
+
+const NavigationComponent = ({ children, goToList, goToForm, route }) => (
+  <AppBody>
+    <HeaderWrapper>
+      <HeaderControls>
+        <Link isActive={route === LIST_LOCATION} onClick={goToList}>LIST</Link>
+        <Link isActive={route === FORM_LOCATION} onClick={goToForm}>FORM</Link>
+      </HeaderControls>
+    </HeaderWrapper>
+    <PageBody>
+      { children }
+    </PageBody>
+  </AppBody>
+);
 
 NavigationComponent.propTypes = {
   children: PropTypes.oneOfType([

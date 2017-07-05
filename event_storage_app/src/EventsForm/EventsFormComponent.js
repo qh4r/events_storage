@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { momentObj } from 'react-moment-proptypes';
-import { FormContainer } from './fragments/FormContainer';
-import { Input } from './fragments/Input';
-import { DayPicker } from './fragments/DayPicker';
-import { FormGroup } from './fragments/FormGroup';
+import { validate as validateEmail } from 'email-validator';
+import {
+  FormContainer, Input, Button, DayPicker, SubmitButton,
+  FormGroup, ValidatingForm, FormControlsWrapper,
+} from './fragments';
 
 
 // I know using Redux here, instead or refs/local state is an overdoing,
@@ -19,6 +20,8 @@ export class EventsFormComponent extends Component {
     updateEmail: PropTypes.func.isRequired,
     updateName: PropTypes.func.isRequired,
     updateSurname: PropTypes.func.isRequired,
+    submitForm: PropTypes.func.isRequired,
+    resetForm: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -32,19 +35,14 @@ export class EventsFormComponent extends Component {
     };
   }
 
-  submitForm = (e) => {
-    e.preventDefault();
-    console.log(e, this.state);
-  }
-
   render() {
     const {
       updateSurname, updateName, updateEmail, updateDate,
-      name, email, surname, date,
+      name, email, surname, date, submitForm, resetForm,
     } = this.props;
 
     return (
-      <form onSubmit={this.submitForm}>
+      <ValidatingForm onSubmit={submitForm} onReset={resetForm}>
         <FormContainer>
           <FormGroup
             id="name"
@@ -53,6 +51,8 @@ export class EventsFormComponent extends Component {
             onChange={e => updateName(e.target.value)}
             placeholder="Name"
             type="text"
+            validator={data => (!data ? 'Name can not be empty.' : '')}
+            dataKey="value"
           />
           <FormGroup
             id="surname"
@@ -61,6 +61,8 @@ export class EventsFormComponent extends Component {
             onChange={e => updateSurname(e.target.value)}
             placeholder="Surname"
             type="text"
+            validator={data => (!data ? 'Surname can not be empty.' : '')}
+            dataKey="value"
           />
           <FormGroup
             id="email"
@@ -68,7 +70,9 @@ export class EventsFormComponent extends Component {
             value={email}
             onChange={e => updateEmail(e.target.value)}
             placeholder="Email"
-            type="email"
+            type="text"
+            validator={data => (!validateEmail(data) ? 'Please, provide valid email' : '')}
+            dataKey="value"
           />
           <FormGroup
             id="date"
@@ -76,13 +80,19 @@ export class EventsFormComponent extends Component {
             numberOfMonths={1}
             placeholder="Date"
             date={date}
-            onDateChange={updateDate}
+            dataKey="date"
+            isOutsideRange={() => false}
+            onChange={updateDate}
             focused={this.state.focused}
-            onFocusChange={({ focused }) => this.setState({ focused })}
+            validator={data => (!data ? 'Date is required' : '')}
+            onFocus={({ focused }) => this.setState({ focused })}
           />
-          <button type="submit">asd</button>
+          <FormControlsWrapper>
+            <Button type="reset">Clear</Button>
+            <SubmitButton type="submit">Submit</SubmitButton>
+          </FormControlsWrapper>
         </FormContainer>
-      </form>
+      </ValidatingForm>
     );
   }
 }

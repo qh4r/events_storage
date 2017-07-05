@@ -1,4 +1,4 @@
-import { UPDATE_DATE, UPDATE_EMAIL, UPDATE_NAME, UPDATE_SURNAME } from './constants';
+import { UPDATE_DATE, UPDATE_EMAIL, UPDATE_NAME, UPDATE_SURNAME, SUBMIT_FORM, RESET_FORM } from './constants';
 
 export function updateDate(date) {
   return {
@@ -28,3 +28,14 @@ export function updateSurname(surname) {
   };
 }
 
+export function submitForm() {
+  return {
+    type: SUBMIT_FORM,
+  };
+}
+
+export function resetForm() {
+  return {
+    type: RESET_FORM,
+  };
+}

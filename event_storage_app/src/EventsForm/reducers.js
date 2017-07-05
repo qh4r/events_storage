@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { UPDATE_DATE, UPDATE_EMAIL, UPDATE_NAME, UPDATE_SURNAME } from './constants';
+import { UPDATE_DATE, UPDATE_EMAIL, UPDATE_NAME, UPDATE_SURNAME, RESET_FORM } from './constants';
 
 const defaultFormState = fromJS({
   name: '',
@@ -20,6 +20,10 @@ export const formData = (state = defaultFormState, action) => {
       return assignData(state, action, 'email');
     case UPDATE_DATE:
       return assignData(state, action, 'date');
+    case RESET_FORM:
+      return fromJS({
+        ...defaultFormState.toJS(),
+      });
     default:
       return state;
   }

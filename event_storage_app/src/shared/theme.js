@@ -14,5 +14,14 @@ export const theme = {
     borderColor: '#dbdbdb',
     mainColor: '#72cadd',
     errorColor: '#ff585a',
+    fontColor: '#757575',
+  },
+  button: {
+    defaultFontColor: '#222',
+    defaultBackgroundColor: '#EEE',
+    defaultActiveBackgroundColor: '#CCC',
+    submitFontColor: '#FFF',
+    submitBackgroundColor: '#72cadd',
+    submitActiveBackgroundColor: '#0093B2',
   },
 };

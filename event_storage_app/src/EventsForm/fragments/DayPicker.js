@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
@@ -5,7 +6,7 @@ import { SingleDatePicker } from 'react-dates';
 import { media } from '../../shared/mediaMixins';
 
 const hidePlaceholder = hasData => (!hasData ? css`
-        
+      margin: 5px 0;
       input[value=''] ~ .DateInput__display-text {
       visibility: visible;
         ${media.sm`
@@ -29,7 +30,26 @@ const StyledPicker = styled.div`
       }
 
       .SingleDatePickerInput {
-        border-color: ${props => props.theme.input.borderColor}
+        border: 1px solid ${({ theme, error }) => (
+            error
+              ? theme.input.errorColor
+              : theme.input.borderColor)};
+      }
+      
+      .DateInput__display-text--focused {
+        background: inherit;
+        border: none;
+        color: ${props => props.theme.input.fontColor};
+      }
+      
+      .DateInput {
+        width: 300px;
+        ${media.sm`
+          width: 700px;
+        `};
+        ${media.md`
+          width: 900px
+        `};
       }
       
       ${props => hidePlaceholder(props.hasData)}
@@ -47,15 +67,30 @@ const StyledPicker = styled.div`
 
 StyledPicker.propTypes = {
   hasData: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 const DayPicker = props => (
-  <StyledPicker hasData={!!props.date}>
-    <SingleDatePicker {...props} />
+  <StyledPicker hasData={!!props.date} error={props.error}>
+    <SingleDatePicker
+      {...props}
+      onDateChange={props.onChange}
+      onFocusChange={props.onFocus}
+    />
   </StyledPicker>
 );
 
-DayPicker.propTypes = SingleDatePicker.propTypes;
+DayPicker.propTypes = {
+  error: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  date: PropTypes.object,
+};
+
+DayPicker.defaultProps = {
+  error: '',
+  date: null,
+};
 
 export {
   DayPicker,

@@ -5,5 +5,5 @@ import { mainContainerSizeMixin } from '../../shared/mainContainerSizeMixin';
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  ${mainContainerSizeMixin}
+  ${mainContainerSizeMixin};
 `;

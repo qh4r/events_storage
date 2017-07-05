@@ -1,13 +1,28 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 
-const EventsList = () => (
+// I know using indexes as keys is bad
+const EventsListComponent = ({ events }) => (
   <div>
     <p>LIST</p>
-    <Link to="/">to form</Link>
+    <ul>
+      {events.map(({ name, surname }, i) => <li key={i}>{name} {surname}</li>)}
+    </ul>
   </div>
 );
 
+EventsListComponent.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
+  })),
+};
+
+EventsListComponent.defaultProps = {
+  events: [],
+};
+
 export {
-  EventsList,
+  EventsListComponent,
 };

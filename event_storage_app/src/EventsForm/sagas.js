@@ -1,4 +1,9 @@
+/* eslint-disable import/first */
 import { takeLatest, select, call, put } from 'redux-saga/effects';
+import 'babel-polyfill';
+import { polyfill } from 'es6-promise';
+polyfill();
+import 'isomorphic-fetch';
 import { SUBMIT_FORM } from './constants';
 import { resetForm } from './actions';
 import { eventsFormSelector } from './selectors';
@@ -27,8 +32,6 @@ function* formPost() {
     if (!result.ok) {
       throw result;
     }
-    const msg = yield call(unwrapPromise, result.json());
-    console.log('ok', msg);
   } catch (e) {
     const err = yield call(unwrapPromise, e.json());
     console.log('err', err);

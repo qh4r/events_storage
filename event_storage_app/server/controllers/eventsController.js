@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
 function eventsController(EventsModel) {
-
   const getEvents = async (req, res) => {
     try {
       const query = EventsModel.find();

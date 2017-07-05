@@ -1,1 +1,2 @@
-export { EventsList } from './EventsListComponent';
+export { eventsList } from './reducers';
+export { EventsList } from './EventsListContainer';

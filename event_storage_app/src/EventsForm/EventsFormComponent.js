@@ -4,6 +4,7 @@ import { momentObj } from 'react-moment-proptypes';
 import { FormContainer } from './fragments/FormContainer';
 import { Input } from './fragments/Input';
 import { DayPicker } from './fragments/DayPicker';
+import { FormGroup } from './fragments/FormGroup';
 
 
 // I know using Redux here, instead or refs/local state is an overdoing,
@@ -45,30 +46,33 @@ export class EventsFormComponent extends Component {
     return (
       <form onSubmit={this.submitForm}>
         <FormContainer>
-          <Input
-            required
+          <FormGroup
+            id="name"
+            child={Input}
             value={name}
             onChange={e => updateName(e.target.value)}
             placeholder="Name"
             type="text"
           />
-          <Input
-            required
+          <FormGroup
+            id="surname"
+            child={Input}
             value={surname}
             onChange={e => updateSurname(e.target.value)}
             placeholder="Surname"
             type="text"
           />
-          <Input
-            required
+          <FormGroup
+            id="email"
+            child={Input}
             value={email}
             onChange={e => updateEmail(e.target.value)}
             placeholder="Email"
             type="email"
           />
-          <DayPicker
-            id="data-picker"
-            required
+          <FormGroup
+            id="date"
+            child={DayPicker}
             numberOfMonths={1}
             placeholder="Date"
             date={date}

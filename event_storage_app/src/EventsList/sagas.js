@@ -6,6 +6,7 @@ import 'babel-polyfill';
 import 'isomorphic-fetch';
 import { FETCH_LIST_DATA } from './constants';
 import { fetchListDataSuccess } from './actions';
+import moment from 'moment';
 
 function fetchListRequest() {
   return fetch('/api/events',
@@ -16,11 +17,14 @@ function fetchListRequest() {
 
 const unwrapPromise = x => Promise.resolve(x);
 
+const momentifyDate = event =>
+  ({ ...event, date: moment(event.date).format('MM/DD/YYYY') });
+
 function* fetchEventsList() {
   try {
     const callResult = yield call(fetchListRequest);
     const eventsList = yield call(unwrapPromise, callResult.json());
-    yield put(fetchListDataSuccess(eventsList));
+    yield put(fetchListDataSuccess(eventsList.map(momentifyDate)));
   } catch (e) {
     console.log('err', e);
   }

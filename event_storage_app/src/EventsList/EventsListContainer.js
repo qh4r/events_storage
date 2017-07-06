@@ -16,9 +16,7 @@ class EventsListContainer extends Component {
 
   render() {
     return (
-      <div>
-        <EventsListComponent {...this.props} />
-      </div>
+      <EventsListComponent {...this.props} />
     );
   }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HeaderWrapper, AppBody, HeaderControls, Link, PageBody } from './fragments';
 import { LIST_LOCATION, FORM_LOCATION } from './constants';
+import { Popup } from '../Popup';
 
 
 const NavigationComponent = ({ children, goToList, goToForm, route }) => (
@@ -15,6 +16,8 @@ const NavigationComponent = ({ children, goToList, goToForm, route }) => (
     <PageBody>
       { children }
     </PageBody>
+    <Popup />
+    <Popup />
   </AppBody>
 );
 

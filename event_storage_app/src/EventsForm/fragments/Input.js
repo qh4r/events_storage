@@ -11,17 +11,24 @@ const Input = styled.input`
   margin: 5px 0;
   padding: 0 15px;
   outline: none;
+  input, 
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    background-color: #FFF !important;    
+    -webkit-box-shadow: 0 0 0 1000px #FFF inset !important;
+  }
   border: 1px solid ${({ theme, error }) => (
-    error
-      ? theme.input.errorColor
-      : theme.input.borderColor)};
+  error
+    ? theme.input.errorColor
+    : theme.input.borderColor)};
   font-family: ${({ theme }) => theme.font};
   font-weight: 200;
   &::placeholder {
     visibility: visible;
       ${media.sm`
-        visibility: hidden;
-      `};
+    visibility: hidden;
+`};
   }  
 `;
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { momentObj } from 'react-moment-proptypes';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -36,7 +35,7 @@ EventListItem.propTypes = {
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  date: momentObj.isRequired,
+  date: PropTypes.string.isRequired,
 };
 
 export {

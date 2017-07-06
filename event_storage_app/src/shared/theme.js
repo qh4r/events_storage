@@ -11,6 +11,12 @@ export const theme = {
   hoveredButtonColor: '#0082b2',
   headerFontColor: '#FFF',
   maxContainerWidth: '1000px',
+  popup: {
+    errorColor: '#ff8789',
+    errorFontColor: '#7a3035',
+    successColor: '#85ffc1',
+    successFontColor: '#2b685e',
+  },
   input: {
     borderColor: '#dbdbdb',
     mainColor: '#72cadd',

@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { momentObj } from 'react-moment-proptypes';
 import { ListContainer } from './fragments/ListContainer';
 import { EventListItem } from './fragments/EventListItemComponent';
 
@@ -18,7 +17,7 @@ EventsListComponent.propTypes = {
     name: PropTypes.string.isRequired,
     surname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    date: momentObj,
+    date: PropTypes.string.isRequired,
   })),
 };
 

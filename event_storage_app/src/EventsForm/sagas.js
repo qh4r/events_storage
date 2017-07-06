@@ -7,6 +7,7 @@ import 'isomorphic-fetch';
 import { SUBMIT_FORM } from './constants';
 import { resetForm } from './actions';
 import { eventsFormSelector } from './selectors';
+import { showPopup } from '../Popup';
 
 function makePostRequest(formData) {
   return fetch('/api/events', {
@@ -34,9 +35,10 @@ function* formPost() {
     }
   } catch (e) {
     const err = yield call(unwrapPromise, e.json());
-    console.log('err', err);
+    yield put(showPopup(true, err.message));
   } finally {
     yield put(resetForm());
+    yield put(showPopup(false, 'Event registered!'));
   }
 }
 

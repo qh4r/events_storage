@@ -12,7 +12,6 @@ const emailValidator = [
 ];
 
 const dateValidator = [
-// eslint-disable-next-line arrow-body-style,no-unused-vars
   (value) => {
     try {
       const date = moment(value);

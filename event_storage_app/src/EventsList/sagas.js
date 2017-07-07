@@ -9,16 +9,16 @@ import { fetchListDataSuccess } from './actions';
 import moment from 'moment';
 import { showPopup } from '../Popup';
 
-function fetchListRequest() {
+export function fetchListRequest() {
   return fetch('/api/events',
     {
       method: 'GET',
     });
 }
 
-const unwrapPromise = x => Promise.resolve(x);
+export const unwrapPromise = x => Promise.resolve(x);
 
-const momentifyDate = event =>
+export const momentifyDate = event =>
   ({ ...event, date: moment(event.date).format('MM/DD/YYYY') });
 
 function* fetchEventsListSaga() {

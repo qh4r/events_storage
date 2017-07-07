@@ -88,8 +88,8 @@ export class EventsFormComponent extends Component {
             onFocus={({ focused }) => this.setState({ focused })}
           />
           <FormControlsWrapper>
-            <Button type="reset">Clear</Button>
-            <SubmitButton type="submit">Submit</SubmitButton>
+            <Button id="reset-button" type="reset">Clear</Button>
+            <SubmitButton id="submit-button" type="submit">Submit</SubmitButton>
           </FormControlsWrapper>
         </FormContainer>
       </ValidatingForm>

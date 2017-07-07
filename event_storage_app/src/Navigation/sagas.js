@@ -3,20 +3,20 @@ import { push } from 'react-router-redux';
 import { NAVIGATE_TO_FORM, NAVIGATE_TO_LIST } from './constants';
 
 
-function* goToList() {
+export function* navigateToList() {
   yield put(push('/list'));
 }
 
-function* goToForm() {
+export function* navigateToForm() {
   yield put(push('/'));
 }
 
-function* goToListSaga() {
-  yield takeLatest(NAVIGATE_TO_LIST, goToList);
+export function* goToListSaga() {
+  yield takeLatest(NAVIGATE_TO_LIST, navigateToList);
 }
 
-function* goToFormSaga() {
-  yield takeLatest(NAVIGATE_TO_FORM, goToForm);
+export function* goToFormSaga() {
+  yield takeLatest(NAVIGATE_TO_FORM, navigateToForm);
 }
 
 export default [

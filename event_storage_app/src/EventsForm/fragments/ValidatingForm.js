@@ -18,10 +18,12 @@ class ErrorTracker {
   }
 
   clearErrors = () => {
-    this.errors = Object.keys(this.errors).map(key => ({ [key]: '' }));
-  }
+    this.errors = Object.keys(this.errors).reduce(
+      (all, key) => ({ ...all, [key]: '' }), {},
+    );
+  };
 
-  checkErrors = () => Object.keys(this.errors).some(key => this.errors[key]);
+  hasErrors = () => Object.keys(this.errors).some(key => this.errors[key]);
 
   subscribe = (validatorAction) => {
     this.validationCallbacks.push(validatorAction);
@@ -60,7 +62,7 @@ class ValidatingForm extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.validateForm();
-    if (this.checkErrors()) {
+    if (this.hasErrors()) {
       this.forceUpdate();
     } else {
       this.props.onSubmit();
@@ -71,7 +73,7 @@ class ValidatingForm extends Component {
     this.errorTracker.performValidation();
   };
 
-  checkErrors = () => this.errorTracker.checkErrors();
+  hasErrors = () => this.errorTracker.hasErrors();
 
   render() {
     return (

@@ -11,12 +11,12 @@ const Input = styled.input`
   margin: 5px 0;
   padding: 0 15px;
   outline: none;
-  input, 
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
     background-color: #FFF !important;    
-    -webkit-box-shadow: 0 0 0 1000px #FFF inset !important;
+    -webkit-box-shadow: 0 0 0 30px white inset; !important;
   }
   border: 1px solid ${({ theme, error }) => (
   error

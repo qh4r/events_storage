@@ -84,4 +84,5 @@ class ValidatingForm extends Component {
 
 export {
   ValidatingForm,
+  ErrorTracker,
 };

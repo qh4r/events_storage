@@ -71,14 +71,15 @@ StyledPicker.propTypes = {
   error: PropTypes.string.isRequired,
 };
 
-const DayPickerControl = props => {
-  const newProps = { child, dataKey, onChange, validator, onFocus, error, ua, ...rest } = props;
-  return (<StyledPicker hasData={!!props.date} error={props.error}>
+const DayPickerControl = (props) => {
+  const { onChange, onFocus, ua } = props;
+  return (
+    <StyledPicker hasData={!!props.date} error={props.error}>
       <SingleDatePicker
-        {...rest }
-        onDateChange={props.onChange}
-        onFocusChange={props.onFocus}
-        withPortal={props.ua.mobile}
+        {...props}
+        onDateChange={onChange}
+        onFocusChange={onFocus}
+        withPortal={ua.mobile}
       />
     </StyledPicker>
   );

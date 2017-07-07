@@ -28,7 +28,11 @@ NavigationComponent.propTypes = {
   ]).isRequired,
   goToList: PropTypes.func.isRequired,
   goToForm: PropTypes.func.isRequired,
-  route: PropTypes.string.isRequired,
+  route: PropTypes.string,
+};
+
+NavigationComponent.defaultProps = {
+  route: '/',
 };
 
 export {

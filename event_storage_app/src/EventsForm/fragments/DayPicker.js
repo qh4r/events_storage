@@ -32,9 +32,9 @@ const StyledPicker = styled.div`
 
       .SingleDatePickerInput {
         border: 1px solid ${({ theme, error }) => (
-            error
-              ? theme.input.errorColor
-              : theme.input.borderColor)};
+  error
+    ? theme.input.errorColor
+    : theme.input.borderColor)};
       }
       
       .DateInput__display-text--focused {
@@ -46,11 +46,11 @@ const StyledPicker = styled.div`
       .DateInput {    
           width: 280px;
         ${media.sm`
-          width: 700px;
-        `};
+    width: 700px;
+`};
         ${media.md`
-          width: 900px
-        `};
+    width: 900px
+`};
       }
       
       ${props => hidePlaceholder(props.hasData)}
@@ -58,9 +58,9 @@ const StyledPicker = styled.div`
       input[value=''] {
         &::placeholder {
             visibility: visible;
-            ${media.sm`  
-              visibility: hidden;
-            `}
+            ${media.sm`
+    visibility: hidden;
+`}
         }
       }
     }
@@ -71,16 +71,18 @@ StyledPicker.propTypes = {
   error: PropTypes.string.isRequired,
 };
 
-const DayPickerControl = props => (
-  <StyledPicker hasData={!!props.date} error={props.error}>
-    <SingleDatePicker
-      {...props}
-      onDateChange={props.onChange}
-      onFocusChange={props.onFocus}
-      withPortal={props.ua.mobile}
-    />
-  </StyledPicker>
-);
+const DayPickerControl = props => {
+  const newProps = { child, dataKey, onChange, validator, onFocus, error, ua, ...rest } = props;
+  return (<StyledPicker hasData={!!props.date} error={props.error}>
+      <SingleDatePicker
+        {...rest }
+        onDateChange={props.onChange}
+        onFocusChange={props.onFocus}
+        withPortal={props.ua.mobile}
+      />
+    </StyledPicker>
+  );
+};
 
 
 DayPickerControl.propTypes = {

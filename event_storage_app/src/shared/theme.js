@@ -4,6 +4,7 @@ export const theme = {
     md: '992px',
     lg: '1200px',
   },
+  font404Color: '#757575',
   borderColor: '#dbdbdb',
   font: '\'Roboto\', sans-serif',
   headerBackground: '#72cadd',

@@ -5,6 +5,7 @@ import { Navigation } from '../Navigation';
 import { EventsForm } from '../EventsForm';
 import { EventsList } from '../EventsList';
 import { HOME_ROUTE, LIST_ROUTE } from './constants';
+import { NotFound } from './404';
 
 
 const AppRouter = ({ history }) => (
@@ -12,6 +13,7 @@ const AppRouter = ({ history }) => (
     <Route path={HOME_ROUTE} component={Navigation}>
       <IndexRoute component={EventsForm} />
       <Route path={LIST_ROUTE} component={EventsList} />
+      <Route path="*" component={NotFound} />
     </Route>
   </Router>
 );

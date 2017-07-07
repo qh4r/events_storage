@@ -42,7 +42,7 @@ export class EventsFormComponent extends Component {
     } = this.props;
 
     return (
-      <ValidatingForm onSubmit={submitForm} onReset={resetForm}>
+      <ValidatingForm id="form-page" onSubmit={submitForm} onReset={resetForm}>
         <FormContainer>
           <FormGroup
             id="name"

@@ -5,7 +5,7 @@ import { ListContainer } from './fragments/ListContainer';
 import { EventListItem } from './fragments/EventListItemComponent';
 
 const EventsListComponent = ({ events }) => (
-  <ListContainer>
+  <ListContainer id="list-page">
     {events.map(event =>
       <EventListItem key={event._id} {...event} />)}
   </ListContainer>

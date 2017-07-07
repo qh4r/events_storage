@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { mount } from 'enzyme';
 import { createMemoryHistory } from 'react-router';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
@@ -7,7 +7,6 @@ import { applyMiddleware, createStore } from 'redux';
 import { App } from './App';
 import { locationStateSelector } from './AppRouter/selectors';
 import { rootReducer } from './rootReducer';
-import { parseDefaultState } from '../server/parseDefaultState';
 
 const memoryHistory = createMemoryHistory();
 
@@ -21,13 +20,10 @@ const history = syncHistoryWithStore(memoryHistory, store, {
 });
 
 describe('Application root', () => {
-
   it('App renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <Provider store={store}>
-        <App history={history} />
-      </Provider>, div);
+    mount(<Provider store={store}>
+      <App history={history} />
+    </Provider>);
   });
 });
 

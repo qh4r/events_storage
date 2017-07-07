@@ -9,13 +9,10 @@ import { locationStateSelector } from './AppRouter/selectors';
 import { rootReducer } from './rootReducer';
 import { parseDefaultState } from '../server/parseDefaultState';
 
-const defaultState = parseDefaultState();
-
 const memoryHistory = createMemoryHistory();
 
 const store = createStore(
   rootReducer,
-  defaultState,
   applyMiddleware(routerMiddleware(memoryHistory)));
 
 
@@ -23,10 +20,14 @@ const history = syncHistoryWithStore(memoryHistory, store, {
   selectLocationState: locationStateSelector(),
 });
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
-    <Provider store={store}>
-      <App history={history} />
-    </Provider>, div);
+describe('Application root', () => {
+
+  it('App renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <Provider store={store}>
+        <App history={history} />
+      </Provider>, div);
+  });
 });
+

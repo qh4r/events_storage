@@ -21,8 +21,8 @@ const readModuleFile = (path, callback) => {
   }
 };
 
-export const handlePreRender = getState => (req, res) => {
-  const defaultState = getState();
+export const handlePreRender = getState => async (req, res) => {
+  const defaultState = await getState(req.originalUrl);
 
   const memoryHistory = createMemoryHistory(req.originalUrl);
   const store = createStore(

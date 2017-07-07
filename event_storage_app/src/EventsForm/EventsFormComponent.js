@@ -8,7 +8,6 @@ import {
   FormGroup, ValidatingForm, FormControlsWrapper,
 } from './fragments';
 
-
 // I know using Redux here, instead or refs/local state is an overdoing,
 // but I decided to use It as sort of a showcase I guess.
 export class EventsFormComponent extends Component {

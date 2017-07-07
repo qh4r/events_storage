@@ -73,7 +73,8 @@
     "webpack-dev-middleware": "^1.11.0",
     "webpack-dev-server": "2.5.0",
     "webpack-hot-middleware": "^2.18.0",
-    "webpack-manifest-plugin": "1.1.0"
+    "webpack-manifest-plugin": "1.1.0",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "babel-plugin-css-modules-transform": "^1.2.7",
@@ -88,14 +89,16 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
+      "src/**/*.{js,jsx}",
+      "server/**/*.{js,jsx}"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
+      "<rootDir>/src/**/?(*.)(spec|test).js?(x)",
+      "<rootDir>/server/**/?(*.)(spec|test).js?(x)"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",

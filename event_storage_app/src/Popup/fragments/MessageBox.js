@@ -6,7 +6,7 @@ import { media } from '../../shared/mediaMixins';
 const MessageBox = styled.div`
   position: absolute;
   width: 50%;
-  min-height: 20%;
+  min-height: 10%;
   left: 50%;
   top: 25%;
   display: flex;

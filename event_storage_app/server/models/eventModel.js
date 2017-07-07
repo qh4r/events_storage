@@ -1,48 +1,26 @@
 import mongoose from 'mongoose';
-import { validate as validateEmail } from 'email-validator';
-import moment from 'moment';
-const stringValidator = [
-  value => value && (value.trim().length > 0),
-  '{PATH} can not be empty',
-];
-
-const emailValidator = [
-  value => validateEmail(value),
-  'email must be valid',
-];
-
-const dateValidator = [
-  (value) => {
-    try {
-      const date = moment(value);
-      return date.isValid();
-    } catch (e) {
-      return false;
-    }
-  },
-  'date must be present and valid',
-];
+import { stringValidator, emailValidator, dateValidator } from './validators/validators';
 
 const eventSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    validate: stringValidator,
+    validate: stringValidator('Please provide valid name.'),
   },
   surname: {
     type: String,
     required: true,
-    validate: stringValidator,
+    validate: stringValidator('Please provide valid surname.'),
   },
   email: {
     type: String,
     required: true,
-    validate: emailValidator,
+    validate: emailValidator('Please provide valid email.'),
   },
   date: {
     type: Date,
     required: true,
-    validate: dateValidator,
+    validate: dateValidator('Please select valid date.'),
   },
 });
 

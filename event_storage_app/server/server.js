@@ -49,7 +49,7 @@ app.use(bodyParser.json());
 
 app.use('/api', eventsRouter(eventsControllerInstance));
 
-app.use('*', handlePreRender(() => parseDefaultState()));
+app.use('*', handlePreRender(parseDefaultState(EventModel)));
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');

@@ -15,4 +15,6 @@ Konifurację można zmienić w pliku ./src/server.js
 Projekt wykorzystuje server side rendering, reacta, reduxa, redux-sage, redux-router i reselecta.
 Zdecydowałem się też na użycie styled-components (dla próby) i szczerze powiedziawszy trochę żałuję tej decyzji.
 
+Boilerplate wykorzystany w projekcie był silnie inspirowany create-react-app i react-boilerplate
+
 Nadprogramowo lista która prezentuje zapisane dane.
